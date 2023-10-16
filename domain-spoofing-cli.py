@@ -65,7 +65,57 @@ def check_domain_info(domain, main_domain):
         "high_risk_tld": high_risk_tld
     }
 
+# New impersonation techniques
+def char_substitution(domain):
+    substitutions = {
+        'a': ['4', '@'],
+        'i': ['1'],
+        'e': ['3'],
+        'o': ['0'],
+    }
+    generated_domains = set()
+    for i, char in enumerate(domain):
+        if char in substitutions:
+            for sub in substitutions[char]:
+                generated_domains.add(domain[:i] + sub + domain[i+1:])
+    return generated_domains
+
+def tld_variation(domain):
+    tld_variants = ['net', 'org', 'biz', 'info']
+    generated_domains = set()
+    base_domain = domain.rsplit('.', 1)[0]
+    for tld in tld_variants:
+        generated_domains.add(f"{base_domain}.{tld}")
+    return generated_domains
+
+def char_addition_removal(domain):
+    generated_domains = set()
+    for i in range(len(domain)):
+        # Character repetition
+        generated_domains.add(domain[:i] + domain[i] + domain[i:])
+        # Character removal
+        generated_domains.add(domain[:i] + domain[i + 1:])
+    return generated_domains
+
+def homoglyph_substitution(domain):
+    homoglyphs = {
+        'l': ['1'],
+    }
+    generated_domains = set()
+    for i, char in enumerate(domain):
+        if char in homoglyphs:
+            for hg in homoglyphs[char]:
+                generated_domains.add(domain[:i] + hg + domain[i+1:])
+    return generated_domains
+
 def generate_impersonating_domains(domain, count=5):
+    generated_domains = set()
+    generated_domains.update(char_substitution(domain))
+    generated_domains.update(tld_variation(domain))
+    generated_domains.update(char_addition_removal(domain))
+    generated_domains.update(homoglyph_substitution(domain))
+
+    # The rest of your original code ...
     substitutions = {
         'a': ['4', '8', '@'],
         'o': ['0', '()'],
@@ -75,30 +125,20 @@ def generate_impersonating_domains(domain, count=5):
         'g': ['9', '&'],
         't': ['+', '7']
     }
-    generated_domains = set()
-
-    # Character substitutions (multiple substitutions per character)
     for i in range(len(domain)):
         for char, subs in substitutions.items():
             for sub in subs:
                 generated_domains.add(domain[:i] + sub + domain[i+1:])
-
-    # Double characters
     for i in range(len(domain)):
         if domain[i].isalpha():
             generated_domains.add(domain[:i] + domain[i] + domain[i:])
-
-    # Character deletions
     for i in range(len(domain)):
         generated_domains.add(domain[:i] + domain[i + 1:])
-
-    # TLD swaps
     extensions = ['.com', '.net', '.org', '.co', '.in', '.info', '.biz', '.online']
     main_name, ext = domain.rsplit('.', 1)
     for new_ext in extensions:
         if new_ext != f".{ext}":
             generated_domains.add(main_name + new_ext)
-
     while len(generated_domains) < count:
         random_domain = ''.join(random.choice(domain) for _ in domain)
         generated_domains.add(random_domain)
@@ -164,7 +204,7 @@ def main():
         batch_process_domains(main_domain, domains_batch, counters)
 
     # Printing the summary
-    print(Fore.BLUE + "\nSummary:")
+    print(Fore.WHITE + "\nSummary:")
     print(Fore.MAGENTA + f"Total high-risk TLD domains: {counters['high_risk_tld']}")
     print(Fore.YELLOW + f"Total active domains: {counters['active']}")
     print(Fore.RED + f"Total domains that are both active and have high-risk TLD: {counters['both']}")
