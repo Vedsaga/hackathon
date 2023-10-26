@@ -15,8 +15,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
-import Image from "next/image";
 
 import {
   Form,
@@ -126,6 +124,19 @@ export default function TrademarkOwnerRegistation() {
 
   const trademarkData: Array<TrademarkDetails> = [
     {
+      imageUrl: "https://tsdr.uspto.gov/img/90118325/large",
+      wordmark: "ALPHAFLY",
+      statuses: [
+        { label: "LIVE", color: "bg-green-600" },
+        { label: "REGISTERED", color: "bg-green-600" },
+      ],
+      goodsAndServices: "IC 025: Footwear.",
+      classNumber: "025",
+      link: "",
+      serialNumber: "90118325",
+      owner: "Nike, Inc. (CORPORATION; OREGON)",
+    },
+    {
       imageUrl: "https://tsdr.uspto.gov/img/97096366/large",
       wordmark: "NIKE",
       statuses: [
@@ -139,20 +150,7 @@ export default function TrademarkOwnerRegistation() {
       serialNumber: "97096366",
       owner: "Nike, Inc. (CORPORATION; OREGON)",
     },
-    {
-      imageUrl: "https://tsdr.uspto.gov/img/97095944/large",
-      wordmark: "",
-      statuses: [
-        { label: "LIVE", color: "bg-green-600" },
-        { label: "PENDING", color: "bg-gray-400" },
-      ],
-      goodsAndServices:
-        "(CANCELLED) IC 035: [ Retail store services in the field of apparel,...",
-      classNumber: "009, 035, 041",
-      link: "",
-      serialNumber: "97095944",
-      owner: "Nike, Inc. (CORPORATION; OREGON)",
-    },
+
     {
       imageUrl: "https://tsdr.uspto.gov/img/77078429/large",
       wordmark: "NIKEGOLF",
@@ -189,7 +187,7 @@ export default function TrademarkOwnerRegistation() {
         <Card className="flex flex-col min-h-[80vh]">
           <CardHeader className=" lg:mt-2">
             <CardTitle className="sm:text-lg md:text-2xl lg:text-3xl">
-              Link Account
+              Link USPTO Account
             </CardTitle>
             <CardDescription className="sm:text-base"></CardDescription>
           </CardHeader>
