@@ -5,6 +5,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import { Badge } from "./ui/badge";
 
 type TrademarkStatus = {
   label: string;
@@ -57,16 +58,14 @@ const TrademarkCard = ({ details, className }: TrademarkCardProps) => {
             <h2 className="font-bold text-xl">Wordmark</h2>
             <p className="text-gray-600 mt-1">{wordmark}</p>
           </div>
-          <div className="mb-4 flex">
+          <div className="mb-4 flex space-x-2">
             {statuses.map(function (status, index) {
               console.log(status);
               return (
-                <span
-                  key={index}
-                  className={`${status.color} text-white rounded-full px-3 py-1 mr-2 text-xs`}
-                >
+                <Badge key={index} className={`${status.color}`}>
+                  {" "}
                   {status.label}
-                </span>
+                </Badge>
               );
             })}
           </div>
