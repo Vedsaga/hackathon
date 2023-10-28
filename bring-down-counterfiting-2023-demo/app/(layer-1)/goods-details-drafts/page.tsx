@@ -415,10 +415,7 @@ export default function GoodsDetailsDrafts() {
                             {form
                               .watch("utilizedTrademarks")
                               .map((trademark) => (
-                                <Badge
-                                  key={trademark}
-                                  className="bg-blue-800"
-                                >
+                                <Badge key={trademark} >
                                   {trademark}
                                 </Badge>
                               ))}
