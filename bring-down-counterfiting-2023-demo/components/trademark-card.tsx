@@ -60,7 +60,6 @@ const TrademarkCard = ({ details, className }: TrademarkCardProps) => {
           </div>
           <div className="mb-4 flex space-x-2">
             {statuses.map(function (status, index) {
-              console.log(status);
               return (
                 <Badge key={index} className={`${status.color}`}>
                   {" "}
