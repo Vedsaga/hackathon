@@ -76,29 +76,34 @@ export default function TrademarkOwnerRegistation() {
     open: false,
     shouldLinkIRSAccount: false,
     isIRSAccountLinked: false,
-    shouldShowLinkIRSAccountButton: false,
+    hasHaveBusinessTINChange: false,
   });
 
   useEffect(() => {
     const isIRSAccountLinked =
       localStorage.getItem("isIRSAccountLinked") === "true";
+    console.log(isIRSAccountLinked);
     setState((prev) => ({
       ...prev,
       isIRSAccountLinked: isIRSAccountLinked,
-      shouldShowLinkIRSAccountButton: !isIRSAccountLinked,
     }));
   }, []);
 
   const watchHaveBusinessTIN = form.watch("haveBusinessTIN");
 
   useEffect(() => {
+    if (!state.hasHaveBusinessTINChange) {
+      return;
+    }
     setState((prev) => ({
       ...prev,
-      shouldShowLinkIRSAccountButton: true,
+      hasHaveBusinessTINChange: false,
     }));
-  }, [watchHaveBusinessTIN]);
+  }, [watchHaveBusinessTIN, state.hasHaveBusinessTINChange]);
 
   function onLinkIRSAccount() {
+    localStorage.setItem("isIRSAccountLinked", "true");
+    console.log(localStorage.getItem("isIRSAccountLinked"));
     setState((prev) => ({
       ...prev,
       shouldLinkIRSAccount: true,
@@ -110,24 +115,12 @@ export default function TrademarkOwnerRegistation() {
     if (!state.shouldLinkIRSAccount) {
       return;
     }
-    localStorage.setItem("isIRSAccountLinked", "true");
     setState((prev) => ({
       ...prev,
-      shouldShowLinkIRSAccountButton: false,
       shouldLinkIRSAccount: false,
       isIRSAccountLinked: localStorage.getItem("isIRSAccountLinked") === "true",
     }));
   }, [state.shouldLinkIRSAccount]);
-
-  useEffect(() => {
-    if (state.shouldShowLinkIRSAccountButton) {
-      localStorage.setItem("isIRSAccountLinked", "false");
-    }
-    setState((prev) => ({
-      ...prev,
-      isIRSAccountLinked: localStorage.getItem("isIRSAccountLinked") === "true",
-    }));
-  }, [state.shouldShowLinkIRSAccountButton]);
 
   return (
     <Card className="flex flex-col min-h-[80vh]">
@@ -221,68 +214,70 @@ export default function TrademarkOwnerRegistation() {
                       <FormControl>
                         <Switch
                           checked={field.value}
-                          onCheckedChange={field.onChange}
+                          onCheckedChange={() => {
+                            field.onChange(!field.value);
+                            setState((prev) => ({
+                              ...prev,
+                              hasHaveBusinessTINChange: true,
+                            }));
+                          }}
                         />
                       </FormControl>
                     </FormItem>
                   )}
                 />
-                {state.shouldShowLinkIRSAccountButton && (
-                  <Dialog
-                    open={state.open}
-                    onOpenChange={function (open) {
-                      setState((prev) => ({ ...prev, open: open }));
-                    }}
-                  >
-                    <DialogTrigger asChild>
-                      <Button
-                        disabled={state.isIRSAccountLinked}
-                        variant={
-                          state.isIRSAccountLinked ? "outline" : "default"
-                        }
-                      >
-                        {state.isIRSAccountLinked ? (
-                          <Check className="mr-2 h-4 w-4" color="green" />
-                        ) : (
-                          <Link2Icon className="mr-2 h-4 w-4" />
-                        )}
+                <Dialog
+                  open={state.open}
+                  onOpenChange={function (open) {
+                    setState((prev) => ({ ...prev, open: open }));
+                  }}
+                >
+                  <DialogTrigger asChild>
+                    <Button
+                      disabled={state.isIRSAccountLinked}
+                      variant={state.isIRSAccountLinked ? "outline" : "default"}
+                    >
+                      {state.isIRSAccountLinked ? (
+                        <Check className="mr-2 h-4 w-4" color="green" />
+                      ) : (
+                        <Link2Icon className="mr-2 h-4 w-4" />
+                      )}
+                      {form.watch("haveBusinessTIN")
+                        ? "Link IRS Business Account"
+                        : "Link IRS Individual Account"}
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>
+                        {" "}
                         {form.watch("haveBusinessTIN")
-                          ? "Link IRS Business Account"
-                          : "Link IRS Individual Account"}
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[425px]">
-                      <DialogHeader>
-                        <DialogTitle>
-                          {" "}
-                          {form.watch("haveBusinessTIN")
-                            ? "Link IRS Business Account?"
-                            : "Link IRS Individual Account?"}
-                        </DialogTitle>
-                        <DialogDescription>
-                          Linking your IRS account to DCC account will way to
-                          prove
-                          <b>you have authorized business in US.</b>
-                          <br />
-                        </DialogDescription>
-                      </DialogHeader>
-                      <DialogFooter>
-                        <DialogClose asChild>
-                          <Button
-                            type="button"
-                            variant="secondary"
-                            className="mr-4"
-                          >
-                            Cancel
-                          </Button>
-                        </DialogClose>
-                        <Button type="button" onClick={onLinkIRSAccount}>
-                          Yes, Link Account
+                          ? "Link IRS Business Account?"
+                          : "Link IRS Individual Account?"}
+                      </DialogTitle>
+                      <DialogDescription>
+                        Linking your IRS account to DCC account will way to
+                        prove
+                        <b>you have authorized business in US.</b>
+                        <br />
+                      </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button
+                          type="button"
+                          variant="secondary"
+                          className="mr-4"
+                        >
+                          Cancel
                         </Button>
-                      </DialogFooter>
-                    </DialogContent>
-                  </Dialog>
-                )}
+                      </DialogClose>
+                      <Button type="button" onClick={onLinkIRSAccount}>
+                        Yes, Link Account
+                      </Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
               </div>
               {form.watch("haveBusinessTIN") && state.isIRSAccountLinked && (
                 <FormField
