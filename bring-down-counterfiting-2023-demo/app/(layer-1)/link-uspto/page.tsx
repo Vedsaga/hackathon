@@ -49,7 +49,7 @@ export default function TrademarkOwnerRegistation() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       isTrademarkOwner:
-        (localStorage.getItem("isUSPTOLinked") ?? "false") === "true",
+        false,
     },
   });
 
@@ -91,7 +91,11 @@ export default function TrademarkOwnerRegistation() {
       ...prev,
       isUSPTOLinked: localStorage.getItem("isUSPTOLinked") === "true",
     }));
-  }, []);
+    form.setValue(
+      "isTrademarkOwner",
+      (localStorage.getItem("isUSPTOLinked") ?? "false") === "true"
+    );
+  }, [form]);
 
   useEffect(() => {
     if (state.isUSPTOLinked) {

@@ -1,7 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
-
+import React, { useEffect, useState } from "react";
 export default function Home() {
+  const [state, setState] = useState({
+    isIRSAccountLinked: false,
+  });
   const router = useRouter();
   function moveToLayer1() {
     router.push("/stakeholder-registation");
@@ -9,6 +12,14 @@ export default function Home() {
   function moveToAmazon() {
     router.push("/amazon");
   }
+
+  useEffect(() => {
+    // Check if the code is running in the browser
+    if (typeof window !== "undefined") {
+      const isLinked = localStorage.getItem("isIRSAccountLinked") === "true";
+      setState((prevState) => ({ ...prevState, isIRSAccountLinked: isLinked }));
+    }
+  }, []); 
 
   return (
     <main className="flex flex-col min-h-screen items-center justify-between p-32">
@@ -43,12 +54,12 @@ export default function Home() {
         </button>
         <button
           className={`group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30 ${
-            localStorage.getItem("isIRSAccountLinked") !== "true"
+            !state.isIRSAccountLinked 
               ? "cursor-not-allowed opacity-50 bg-gray-400"
               : ""
           }`}
           rel="noopener noreferrer"
-          disabled={!(localStorage.getItem("isIRSAccountLinked") === "true")}
+          disabled={!state.isIRSAccountLinked}
           onClick={() => moveToAmazon()}
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
