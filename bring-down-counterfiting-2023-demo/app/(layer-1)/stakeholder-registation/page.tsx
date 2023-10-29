@@ -123,10 +123,10 @@ export default function TrademarkOwnerRegistation() {
   }, [state.shouldLinkIRSAccount]);
 
   return (
-    <Card className="flex flex-col min-h-[80vh]">
+    <Card className="flex flex-col min-h-[80vh] max-h-[80vh]">
       <CardHeader className=" lg:mt-2">
         <CardTitle className="sm:text-lg md:text-2xl lg:text-3xl">
-          Trademark Owner Registation
+          Stakeholder Registation
         </CardTitle>
         <CardDescription className="sm:text-base"></CardDescription>
       </CardHeader>
