@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 export default function Home() {
   const router = useRouter();
   function moveToLayer1() {
-    router.push("/trademark-owner-registation");
+    router.push("/stakeholder-registation");
   }
 
   return (
