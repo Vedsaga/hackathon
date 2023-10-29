@@ -6,6 +6,9 @@ export default function Home() {
   function moveToLayer1() {
     router.push("/stakeholder-registation");
   }
+  function moveToAmazon() {
+    router.push("/amazon");
+  }
 
   return (
     <main className="flex flex-col min-h-screen items-center justify-between p-32">
@@ -39,17 +42,23 @@ export default function Home() {
           </p>
         </button>
         <button
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+          className={`group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30 ${
+            localStorage.getItem("isIRSAccountLinked") !== "true"
+              ? "cursor-not-allowed opacity-50 bg-gray-400"
+              : ""
+          }`}
           rel="noopener noreferrer"
+          disabled={!(localStorage.getItem("isIRSAccountLinked") === "true")}
+          onClick={() => moveToAmazon()}
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Layer 2
+            Amazon
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Demo of layer 2, from the start.
+            Marketplace Demo Flow to show how DCC can be used
           </p>
         </button>
         <button
@@ -57,14 +66,9 @@ export default function Home() {
           rel="noopener noreferrer"
           onClick={() => localStorage.clear()}
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Rest Storage
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
+          <h2 className={`mb-3 text-2xl font-semibold`}>Rest Flow</h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            This will be the rest local storage
+            Reset the flow to start demo again
           </p>
         </button>
       </div>

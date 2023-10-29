@@ -2,7 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -13,7 +13,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatDistanceToNow, addDays } from "date-fns";
 
 import {
@@ -28,17 +28,14 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import { Check, Link2Icon } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { Switch } from "@/components/ui/switch";
 import { useEffect, useState } from "react";
 import { LoadingIndicator } from "@/components/loading-indicator";
-import { TrademarkCard, TrademarkDetails } from "@/components/trademark-card";
 import { Badge } from "@/components/ui/badge";
 
 const formSchema = z.object({
@@ -64,7 +61,7 @@ export default function Amazon() {
   const router = useRouter();
 
   function onSubmit() {
-    router.push("/amazon/goods-listings");
+    router.push("/amazon/product-listings");
   }
 
   function onLinkDCCAccount() {
