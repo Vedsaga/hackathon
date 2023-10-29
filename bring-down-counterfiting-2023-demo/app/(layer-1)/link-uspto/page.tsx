@@ -190,7 +190,7 @@ export default function TrademarkOwnerRegistation() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
       <div className="col-span-2">
-        <Card className="flex flex-col min-h-[80vh]">
+        <Card className="flex flex-col min-h-[80vh] max-h-[80vh]">
           <CardHeader className=" lg:mt-2">
             <CardTitle className="sm:text-lg md:text-2xl lg:text-3xl">
               Link USPTO Account
@@ -313,7 +313,7 @@ export default function TrademarkOwnerRegistation() {
         {state.isUSPTOLinked && (
           <ScrollArea className=" h-max rounded-md border">
             {state.isSyncingTrademarks ? (
-              <div className="flex flex-col min-h-[80vh] items-center justify-center">
+              <div className="flex flex-col min-h-[80vh] max-h-[80vh] items-center justify-center">
                 <h4 className="text-center pr-4">Loading Trademarks...</h4>
                 <LoadingIndicator />
               </div>
