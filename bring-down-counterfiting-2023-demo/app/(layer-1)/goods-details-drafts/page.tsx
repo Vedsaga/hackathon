@@ -4,8 +4,7 @@ import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Dialog } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 import {
@@ -17,28 +16,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
-import {
-  Check,
-  CheckIcon,
-  Link2Icon,
-  LucideDraftingCompass,
-  MoveRight,
-  PackagePlus,
-  SeparatorHorizontalIcon,
-} from "lucide-react";
+import { CheckIcon, PackagePlus, SeparatorHorizontalIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Switch } from "@/components/ui/switch";
 import { useEffect, useState } from "react";
-import { LoadingIndicator } from "@/components/loading-indicator";
 import { TrademarkCard, TrademarkDetails } from "@/components/trademark-card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -72,7 +54,7 @@ const formSchema = z.object({
   utilizedTrademarks: z.array(z.string()),
 });
 
-const languages = [
+const trademarks = [
   {
     label: "ALPHAFLY",
     value: "90118325",
@@ -181,7 +163,7 @@ export default function GoodsDetailsDrafts() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className="col-span-1">
-        <Card className="flex flex-col min-h-[80vh]">
+        <Card className="flex flex-col min-h-[80vh] max-h-[80vh]">
           <CardHeader className=" lg:mt-2">
             <CardTitle className="sm:text-lg md:text-2xl lg:text-3xl">
               Goods Details Drafts
@@ -201,7 +183,7 @@ export default function GoodsDetailsDrafts() {
               >
                 <SheetTrigger asChild>
                   <Button
-                    variant={state.goodsCount === 0 ? "secondary" : "outline"}
+                    variant={state.goodsCount === 0 ? "default" : "outline"}
                   >
                     <PackagePlus className="mr-2 h-4 w-4" />
                     Add Goods
@@ -288,7 +270,7 @@ export default function GoodsDetailsDrafts() {
                                       No Trademak found.
                                     </CommandEmpty>
                                     <CommandGroup>
-                                      {languages.map((trademark) => (
+                                      {trademarks.map((trademark) => (
                                         <CommandItem
                                           className="w-[100%]"
                                           value={trademark.label}
@@ -415,9 +397,7 @@ export default function GoodsDetailsDrafts() {
                             {form
                               .watch("utilizedTrademarks")
                               .map((trademark) => (
-                                <Badge key={trademark} >
-                                  {trademark}
-                                </Badge>
+                                <Badge key={trademark}>{trademark}</Badge>
                               ))}
                           </div>
                           <p className="mt-4 text-sm">
@@ -435,7 +415,7 @@ export default function GoodsDetailsDrafts() {
         </Card>
       </div>
       <div className="col-span-1">
-        <Card className="flex flex-col min-h-[80vh]">
+        <Card className="flex flex-col min-h-[80vh] max-h-[80vh]">
           <CardHeader className=" lg:mt-2">
             <CardTitle className="sm:text-lg md:text-2xl lg:text-3xl">
               Trademark Utilized
