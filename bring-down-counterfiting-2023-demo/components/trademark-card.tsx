@@ -53,7 +53,6 @@ const TrademarkCard = ({ details, className }: TrademarkCardProps) => {
         />
       </CardHeader>
       <CardContent>
-        <div className="">
           <div className="mb-4">
             <h2 className="font-bold text-xl">Wordmark</h2>
             <p className="text-gray-600 mt-1">{wordmark}</p>
@@ -87,7 +86,6 @@ const TrademarkCard = ({ details, className }: TrademarkCardProps) => {
             <h2 className="font-bold text-xl">Owners</h2>
             <p className="text-gray-600 mt-1">{owner}</p>
           </div>
-        </div>
       </CardContent>
       <CardFooter></CardFooter>
     </Card>
