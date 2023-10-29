@@ -30,11 +30,10 @@ import {
   CommandInput,
   CommandItem,
 } from "@/components/ui/command";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   CheckIcon,
-  CopyIcon,
   FolderRoot,
   Link,
   PlusIcon,
@@ -811,11 +810,11 @@ export default function Dashboard() {
                                       addSuffix: true,
                                     })}
                                   </span>
-                                  <Badge className="w-max">
+                                  <Badge className="w-max bg-red-600">
                                     expiring in{" "}
                                     {formatDistanceToNow(
                                       addDays(Date.now(), 29)
-                                    )}{" "}
+                                    )}
                                   </Badge>
                                 </CardContent>
                               </Card>
