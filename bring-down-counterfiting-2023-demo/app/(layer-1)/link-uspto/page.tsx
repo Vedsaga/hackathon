@@ -64,7 +64,13 @@ export default function TrademarkOwnerRegistation() {
   const router = useRouter();
 
   function onSubmit() {
-    router.push("/goods-details-drafts");
+    if (state.isUSPTOLinked) {
+      router.push("/goods-details-drafts");
+      return;
+    }
+    if (!state.isUSPTOLinked) {
+      router.push("/dashboard");
+    }
   }
 
   function onPrevious() {
