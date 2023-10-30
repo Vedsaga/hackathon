@@ -311,32 +311,41 @@ export default function TrademarkOwnerRegistation() {
             </Form>
           </CardContent>
           <CardFooter></CardFooter>
-        </Card>{" "}
+        </Card>
       </div>
       <div className="col-span-3">
         {state.isUSPTOLinked && (
-          <ScrollArea className=" h-max rounded-md border">
-            {state.isSyncingTrademarks ? (
-              <div className="flex flex-col min-h-[80vh] max-h-[80vh] items-center justify-center">
-                <h4 className="text-center pr-4">Loading Trademarks...</h4>
-                <LoadingIndicator />
-              </div>
-            ) : state.isSyncCompleted ? (
-              <div className="flex w-max space-x-4 p-4">
-                {trademarkData.map((trademark, index) => (
-                  <TrademarkCard
-                    key={index}
-                    details={trademark}
-                    className="w-80"
-                  />
-                ))}
-              </div>
-            ) : (
-              <h4>No Trademarks Found</h4>
-            )}
+          <Card>
+            <CardHeader>
+              <CardTitle className="sm:text-lg md:text-2xl lg:text-3xl">
+                All Trademarks
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ScrollArea className=" h-max rounded-md">
+                {state.isSyncingTrademarks ? (
+                  <div className="flex flex-col min-h-[80vh] max-h-[80vh] items-center justify-center">
+                    <h4 className="text-center pr-4">Loading Trademarks...</h4>
+                    <LoadingIndicator />
+                  </div>
+                ) : state.isSyncCompleted ? (
+                  <div className="flex w-max space-x-4 p-4">
+                    {trademarkData.map((trademark, index) => (
+                      <TrademarkCard
+                        key={index}
+                        details={trademark}
+                        className="w-80 h-max"
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <h4>No Trademarks Found</h4>
+                )}
 
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
+                <ScrollBar orientation="horizontal" />
+              </ScrollArea>
+            </CardContent>
+          </Card>
         )}
       </div>
     </div>
