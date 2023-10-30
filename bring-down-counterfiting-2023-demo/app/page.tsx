@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 export default function Home() {
   const [state, setState] = useState({
     isIRSAccountLinked: false,
+    isStorageCleared: false,
   });
   const router = useRouter();
   function moveToLayer1() {
@@ -19,7 +20,26 @@ export default function Home() {
       const isLinked = localStorage.getItem("isIRSAccountLinked") === "true";
       setState((prevState) => ({ ...prevState, isIRSAccountLinked: isLinked }));
     }
-  }, []); 
+  }, []);
+  useEffect(() => {
+    if (state.isStorageCleared) {
+      localStorage.clear();
+      const isLinked = localStorage.getItem("isIRSAccountLinked") === "true";
+
+      setState((prevState) => ({
+        ...prevState,
+        isStorageCleared: false,
+        isIRSAccountLinked: isLinked,
+      }));
+    }
+  }, [state.isStorageCleared]);
+
+  function clearStorage() {
+    setState((prevState) => ({
+      ...prevState,
+      isStorageCleared: true,
+    }));
+  }
 
   return (
     <main className="flex flex-col min-h-screen items-center justify-between p-32">
@@ -54,8 +74,8 @@ export default function Home() {
         </button>
         <button
           className={`group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30 ${
-            !state.isIRSAccountLinked 
-              ? "cursor-not-allowed opacity-50 bg-gray-400"
+            !state.isIRSAccountLinked
+              ? "cursor-not-allowed opacity-50 bg-gray-100"
               : ""
           }`}
           rel="noopener noreferrer"
@@ -75,7 +95,7 @@ export default function Home() {
         <button
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
           rel="noopener noreferrer"
-          onClick={() => localStorage.clear()}
+          onClick={clearStorage}
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>Rest Flow</h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
