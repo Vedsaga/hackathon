@@ -279,9 +279,9 @@ export default function Dashboard() {
                       open={state.openSheet}
                       onOpenChange={function (open) {
                         if (open && state.shouldCreateParentNode) {
-                          setState((prev) => ({ ...prev, open: false }));
+                          setState((prev) => ({ ...prev, openSheet: false }));
                         } else {
-                          setState((prev) => ({ ...prev, open: open }));
+                          setState((prev) => ({ ...prev, openSheet: open }));
                         }
                       }}
                     >
