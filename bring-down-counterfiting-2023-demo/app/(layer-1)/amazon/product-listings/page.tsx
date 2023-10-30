@@ -58,7 +58,7 @@ const formSchema = z.object({
   dccNodeId: z.string().optional(),
 });
 
-type ProductListing = {
+export type ProductListing = {
   index: number;
   dccNodeId: string;
   status: number;
@@ -372,8 +372,8 @@ export default function ProductListings() {
               <View className="mr-2 " /> Consumer Preview
             </Button>
           </div>
-          <ScrollArea className="rounded-md mt-4 max-h-[56vh]">
-            {state.listedProducts.length > 0 && (
+          {state.listedProducts.length > 0 && (
+            <ScrollArea className="rounded-md mt-4 max-h-[56vh] border">
               <div className="flex flex-col-reverse space-y-4 mb-4">
                 {state.listedProducts.map((product, index) => (
                   <figure
@@ -427,8 +427,8 @@ export default function ProductListings() {
                   </figure>
                 ))}
               </div>
-            )}
-          </ScrollArea>
+            </ScrollArea>
+          )}
         </div>
       </CardContent>
     </Card>
