@@ -82,7 +82,6 @@ export default function TrademarkOwnerRegistation() {
   useEffect(() => {
     const isIRSAccountLinked =
       localStorage.getItem("isIRSAccountLinked") === "true";
-    console.log(isIRSAccountLinked);
     setState((prev) => ({
       ...prev,
       isIRSAccountLinked: isIRSAccountLinked,
@@ -103,7 +102,6 @@ export default function TrademarkOwnerRegistation() {
 
   function onLinkIRSAccount() {
     localStorage.setItem("isIRSAccountLinked", "true");
-    console.log(localStorage.getItem("isIRSAccountLinked"));
     setState((prev) => ({
       ...prev,
       shouldLinkIRSAccount: true,
