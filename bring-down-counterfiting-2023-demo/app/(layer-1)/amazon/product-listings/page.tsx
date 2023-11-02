@@ -136,6 +136,7 @@ export default function ProductListings() {
 
   function onAddGoodsToDrafts() {
     const dccId = form.getValues("dccNodeId");
+    form.resetField("dccNodeId");
     const newLinkedDCC: ProductListing = {
       index: state.listedProducts.length,
       dccNodeId: "",
@@ -158,7 +159,6 @@ export default function ProductListings() {
     );
     const toJsonString = JSON.stringify(filteredProductListings);
     localStorage.setItem("listedProducts", toJsonString);
-
     setState((prev) => ({
       ...prev,
       shouldAddProduct: true,
@@ -181,11 +181,9 @@ export default function ProductListings() {
 
   useEffect(() => {
     if (state.shouldAddProduct) {
-      // decode local storage string
       const localListedProducts: Array<ProductListing> = JSON.parse(
         localStorage.getItem("listedProducts") ?? "[]"
       ) as Array<ProductListing>;
-      console.log(localListedProducts);
       setState((prev) => ({
         ...prev,
         listedProducts: localListedProducts,
