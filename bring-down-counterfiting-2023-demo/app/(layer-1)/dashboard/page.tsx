@@ -513,7 +513,7 @@ export default function Dashboard() {
                                           about the future of racing shoes.
                                         </span>
                                       </div>
-                                      <Badge className="mt-2 mr-4 bg-sky-500">
+                                      <Badge className="mt-2 mr-4 bg-[#0141ff]">
                                         2 trademarks
                                       </Badge>
                                       <Badge>
