@@ -200,7 +200,7 @@ export default function ProductListings() {
     <Card className="flex flex-col min-h-[80vh] max-h-[80vh] max-w-[48vw]">
       <CardHeader className=" lg:mt-2">
         <CardTitle className="sm:text-lg md:text-2xl lg:text-3xl">
-          Product Listings
+          Seller Inventory
         </CardTitle>
       </CardHeader>
       <CardContent>

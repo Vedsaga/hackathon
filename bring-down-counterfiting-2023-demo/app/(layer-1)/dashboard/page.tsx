@@ -268,7 +268,7 @@ export default function Dashboard() {
             <Card className="flex flex-col min-h-[80vh] max-h-[80vh]">
               <CardHeader>
                 <CardTitle className="sm:text-lg md:text-2xl lg:text-3xl">
-                  Parent Nodes
+                  Parent Certificate
                 </CardTitle>
                 <CardDescription></CardDescription>
               </CardHeader>
@@ -288,7 +288,7 @@ export default function Dashboard() {
                       <SheetTrigger asChild>
                         <Button variant={"outline"}>
                           <PlusIcon className="mr-2 h-4 w-4" />
-                          New Parent Node
+                          New Parent Certificate
                         </Button>
                       </SheetTrigger>
                       <SheetContent side={"bottom"} className="h-[80vh]">
@@ -436,7 +436,7 @@ export default function Dashboard() {
                             </div>
                             <Button type="submit" className="mt-4">
                               <FolderRoot className="md:mr-2 h-5 w-5" />
-                              Create Parent Node
+                              Create Parent Certificate
                             </Button>
                           </form>
                         </Form>
@@ -517,8 +517,8 @@ export default function Dashboard() {
                                         2 trademarks
                                       </Badge>
                                       <Badge>
-                                        {state.numberOfChildNodesIssued} node
-                                        issued
+                                        {state.numberOfChildNodesIssued}{" "}
+                                        children issued
                                       </Badge>
                                     </CardContent>
                                   </Card>
@@ -547,7 +547,7 @@ export default function Dashboard() {
                         <SheetTrigger asChild>
                           <Button variant={"default"}>
                             <PlusIcon className="mr-2 h-4 w-4" />
-                            Create Parent Node
+                            Create Parent Certificate
                           </Button>
                         </SheetTrigger>
                         <SheetContent side={"bottom"} className="h-[80vh]">
@@ -684,7 +684,9 @@ export default function Dashboard() {
                                   name="manufacturingPlantLocation"
                                   render={({ field }) => (
                                     <FormItem>
-                                      <FormLabel>Description</FormLabel>
+                                      <FormLabel>
+                                        Manufacturing Location
+                                      </FormLabel>
                                       <FormControl>
                                         <Textarea
                                           placeholder="Manufacturing Plant Location"
@@ -700,7 +702,7 @@ export default function Dashboard() {
                               </div>
                               <Button type="submit" className="mt-4">
                                 <FolderRoot className="md:mr-2 h-5 w-5" />
-                                Create Parent Node
+                                Create Parent Certificate
                               </Button>
                             </form>
                           </Form>
@@ -719,7 +721,7 @@ export default function Dashboard() {
               <Card className="flex flex-col min-h-[80vh] max-h-[80vh]">
                 <CardHeader>
                   <CardTitle className="sm:text-lg md:text-2xl lg:text-3xl">
-                    Node Details
+                    Certificate Details
                   </CardTitle>
                   <CardDescription></CardDescription>
                 </CardHeader>
@@ -745,12 +747,12 @@ export default function Dashboard() {
                         <DialogTrigger asChild>
                           <Button variant={"outline"}>
                             <PlusIcon className="mr-2 h-4 w-4" />
-                            New Child Node
+                            New Child Certificate
                           </Button>
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-md">
                           <DialogHeader>
-                            <DialogTitle>Create Child Node</DialogTitle>
+                            <DialogTitle>Create Child Certificate</DialogTitle>
                             <DialogDescription>
                               Please enter the DCC Unique ID of the business
                               counterpart who is buying.
@@ -824,7 +826,7 @@ export default function Dashboard() {
                       ) : (
                         <div className="flex flex-col min-h-[40vh] items-center justify-center">
                           <h4 className="text-center pr-4 text-muted-foreground">
-                            No Child Nodes Found
+                            No Child Certificates Found
                             <br className="mb-4"></br>
                             <Dialog
                               open={state.opneDialog}
@@ -844,14 +846,15 @@ export default function Dashboard() {
                             >
                               <DialogTrigger asChild>
                                 <Button variant="default">
-                                  {" "}
                                   <PlusIcon className="mr-2 h-4 w-4" />
-                                  Create Child Node
+                                  Create Child Certificate
                                 </Button>
                               </DialogTrigger>
                               <DialogContent className="sm:max-w-md">
                                 <DialogHeader>
-                                  <DialogTitle>Create Child Node</DialogTitle>
+                                  <DialogTitle>
+                                    Create Child Certificate
+                                  </DialogTitle>
                                   <DialogDescription>
                                     Please enter the DCC Unique ID of the
                                     business counterpart who is buying.
@@ -883,7 +886,7 @@ export default function Dashboard() {
                                     variant="default"
                                     onClick={onIssueChildNode}
                                   >
-                                    Issue Child Node
+                                    Issue Child Certificate
                                   </Button>
                                 </DialogFooter>
                               </DialogContent>
@@ -895,7 +898,7 @@ export default function Dashboard() {
                   ) : (
                     <div className="flex flex-col min-h-[40vh] items-center justify-center">
                       <h4 className="text-center pr-4 text-muted-foreground">
-                        Please select a node to see details
+                        Please select a certificate to see details
                       </h4>
                     </div>
                   )}
@@ -924,7 +927,7 @@ export default function Dashboard() {
             <Card className="flex flex-col min-h-[80vh] max-h-[80vh]">
               <CardHeader>
                 <CardTitle className="sm:text-lg md:text-2xl lg:text-3xl">
-                  Node Details
+                  Certificate Details
                 </CardTitle>
                 <CardDescription></CardDescription>
               </CardHeader>

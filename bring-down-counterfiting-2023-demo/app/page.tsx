@@ -10,6 +10,9 @@ export default function Home() {
   function moveToLayer1() {
     router.push("/stakeholder-registation");
   }
+  function moveToLayer2() {
+    router.push("/layer-2");
+  }
   function moveToAmazon() {
     router.push("/amazon");
   }
@@ -73,7 +76,7 @@ export default function Home() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Demo of layer 1, it is record of chain of B2B trade transaction.
+            Chain of B2B trade transactions.
           </p>
         </button>
         <button
@@ -99,7 +102,7 @@ export default function Home() {
         <button
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
           rel="noopener noreferrer"
-          onClick={moveToLayer1}
+          onClick={moveToLayer2}
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
             Layer 2
@@ -108,8 +111,7 @@ export default function Home() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Demo of Layer 2, it is Network of Authentication App and Trademark
-            Owner
+            Network of Authentication Apps and Trademark Servers
           </p>
         </button>
         <button

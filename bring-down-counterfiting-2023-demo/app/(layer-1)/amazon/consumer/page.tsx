@@ -24,7 +24,7 @@ export default function Consumer() {
     }));
   }, []);
   return (
-    <Card className="flex flex-col min-h-[80vh] max-h-[80vh] max-w-[80vw]">
+    <Card className="flex flex-col min-h-[80vh] max-h-[160vh] max-w-[80vw]">
       <CardHeader className=" lg:mt-2">
         <CardTitle className="sm:text-lg md:text-2xl lg:text-3xl">
           Consumer Preview
@@ -32,7 +32,7 @@ export default function Consumer() {
       </CardHeader>
       <CardContent>
         {state.listedProducts.length > 0 && (
-          <ScrollArea className="rounded-md h-[64vh]">
+          <ScrollArea className="rounded-md h-[160vh]">
             <div className="flex flex-col-reverse space-y-4 mb-4">
               {state.listedProducts.map((product, index) => (
                 <figure
